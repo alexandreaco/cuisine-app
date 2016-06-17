@@ -1,0 +1,22 @@
+{
+  "name": "cuisine-app",
+  "version": "1.0.0",
+  "description": "controller for cuisine",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexandreaco/cuisine-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexandreaco/cuisine-app/issues"
+  },
+  "homepage": "https://github.com/alexandreaco/cuisine-app#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
