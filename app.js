@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
 
 app.get('/', function (req, res) {
   res.send('Hello World!');
@@ -27,6 +28,11 @@ app.use(function (req, res, next) {
 });
 
 
+// Body parser
+app.use(bodyParser.json());
+
+
+
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
 });
@@ -34,33 +40,44 @@ app.listen(3000, function () {
 
 
 //---
+// Dummy Data
+var DATA = {
+  'ingredients' : [
+    {
+      '_id': '123456',
+      'name': 'Produce Item',
+      'type': 'produce',
+      'cost': 3.5,
+      'unit': 'lb'
+    },
+    {
+      '_id': '345678',
+      'name': 'Dairy Item',
+      'type': 'grain',
+      'cost': 5.00,
+      'unit': 'gal'
+    },
+    {
+      '_id': '123123',
+      'name': 'Grain Item',
+      'type': 'grain',
+      'cost': 4.25,
+      'unit': 'lb'
+    }
+  ]
+};
+
+
+//---
 // Routes
 
 app.get('/ingredients', function (req, res) {
   console.log('someone is at ingredients');
-  res.json({
-    'ingredients' : [
-      {
-        '_id': '123456',
-        'name': 'Produce Item',
-        'type': 'produce',
-        'cost': 3.5,
-        'unit': 'lb'
-      },
-      {
-        '_id': '345678',
-        'name': 'Dairy Item',
-        'type': 'grain',
-        'cost': 5.00,
-        'unit': 'gal'
-      },
-      {
-        '_id': '123123',
-        'name': 'Grain Item',
-        'type': 'grain',
-        'cost': 4.25,
-        'unit': 'lb'
-      }
-    ]
-  });
+  res.json(DATA);
+});
+
+app.post('/addIngredient', function (req, res) {
+  console.log('adding ingredient');
+  DATA.ingredients.push(req.body);
+  res.json(DATA)
 });
