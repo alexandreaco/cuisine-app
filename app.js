@@ -81,3 +81,27 @@ app.post('/addIngredient', function (req, res) {
   DATA.ingredients.push(req.body);
   res.json(DATA)
 });
+
+app.post ('/editIngredient', function (req, res) {
+  console.log(req.body);
+  console.log('editing ingredient');
+
+  for(var i=0; i < DATA.ingredients.length; i++) {
+    var item = DATA.ingredients[i];
+    var newbie = req.body;
+    if(DATA.ingredients[i]._id == req.body._id) {
+      console.log('found a match');
+      // replace with new data
+      DATA.ingredients[i] = {
+        '_id': newbie._id,
+        'name': newbie.name,
+        'type': 'grain',
+        'cost': newbie.cost,
+        'unit': newbie.unit
+      }
+    }
+  }
+
+  console.log(DATA);
+  res.json(DATA)
+});
