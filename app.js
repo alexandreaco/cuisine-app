@@ -105,3 +105,20 @@ app.post ('/editIngredient', function (req, res) {
   console.log(DATA);
   res.json(DATA)
 });
+
+
+app.post ('/deleteIngredient', function (req, res) {
+  console.log(req.body);
+  console.log('deleting ingredient');
+
+  for(var i=0; i < DATA.ingredients.length; i++) {
+    var item = DATA.ingredients[i];
+    var newbie = req.body;
+    if(DATA.ingredients[i]._id == req.body._id) {
+      console.log('found a match');
+      DATA.ingredients.splice(i, 1);
+    }
+  }
+
+  res.json(DATA)
+});
